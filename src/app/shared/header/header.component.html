@@ -1,0 +1,14 @@
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+        <a class="navbar-brand" routerLink="">{{name}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+             <a class="nav-item nav-link" *ngFor="let menuItem of menuItems" routerLink="{{menuItem.link}}">{{ menuItem.name }}</a>
+          </div>
+        </div>
+        <span *ngIf="getCount() > 0" class="badge circle-badge">{{getCount()}}</span>
+        <a routerLink="/cart"><mat-icon>shopping_cart</mat-icon></a>
+    </nav>

@@ -1,0 +1,41 @@
+<div class="album py-5 bg-light tall">
+        <div class="container" style="margin-top: 2%;">
+            <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item" [ngClass]="{'disabled': productPage.currentPage == 1}">
+                      <a class="page-link" (click)="previousePage()" aria-label="Previous">
+                          <span aria-disabled="productPage.currentPage == 1">&laquo;</span>
+                      </a>
+                  </li>
+                  <li class="page-item" *ngFor="let pageNum of allPages">
+                    <a class="page-link" (click)="loadByPage(pageNum)" [ngClass]="{'active': productPage.currentPage == pageNum}">{{ pageNum }}
+                        <span *ngIf="productPage.currentPage == pageNum" class="sr-only">(current)</span>
+                    </a>
+                  </li>
+                  <li class="page-item" [ngClass]="{'disabled': productPage.currentPage == productPage.totalNumberOfPages}">
+                      <a class="page-link" (click)="nextPage()" aria-label="Next">
+                          <span aria-disabled="productPage.currentPage == productPage.totalNumberOfPages">&raquo;</span>
+                      </a>
+                  </li>
+                </ul>
+            </nav>
+          <div class="row">
+            <div class="col-md-4" *ngFor="let productItem of productPage.data">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="assets/img/pizza.png" width="250px" height="350px" style="padding: 15px;" data-holder-rendered="true">
+                <div class="card-body">
+                    <h5>{{productItem.name}}</h5>
+                    <p class="card-text">{{productItem.description}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="addToCart(productItem)">Add to cart</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="buyNow(productItem)">Buy Now</button>
+                        </div>
+                        <h5 class="text-muted">Price: {{productItem.price | currency:'USD'}}</h5>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
